@@ -1,0 +1,5 @@
+.news-cat .active {
+  border: 1px solid var(--Dark-06, #E7E7E7);
+  background: var(--Dark-06, #E7E7E7);
+
+}
