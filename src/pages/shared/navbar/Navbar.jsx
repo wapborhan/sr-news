@@ -1,7 +1,13 @@
-import React from "react";
+import BreakingNews from "./BreakingNews";
+import Navlinks from "./Navlinks";
 
 const Navbar = () => {
-  return <div>Navbar</div>;
+  return (
+    <div className="bg-slate-100 py-2 mt-4">
+      <BreakingNews />
+      <Navlinks />
+    </div>
+  );
 };
 
 export default Navbar;
