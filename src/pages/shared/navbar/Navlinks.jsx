@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import proImage from "../../../assets/images/user.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Navlinks = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const links = (
     <>
       <li>
@@ -48,30 +52,35 @@ const Navlinks = () => {
       </div>
 
       <div className="navbar-end flex gap-4 items-center">
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src={proImage} className="w-10" alt="" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">Profile</a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
-        <NavLink to="/login" className="bg-[#403F3F] px-8 py-2 text-white ">
-          Login
-        </NavLink>
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={proImage} className="w-10" alt="" />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <NavLink to="/profile" className="justify-between">
+                  Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/update-profile">Settings</NavLink>
+              </li>
+              <li>
+                <a onClick={logOut}>Logout</a>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <NavLink to="/login" className="bg-[#403F3F] px-8 py-2 text-white ">
+            Login
+          </NavLink>
+        )}
       </div>
     </div>
   );

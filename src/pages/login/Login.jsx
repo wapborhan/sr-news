@@ -1,21 +1,33 @@
 import { NavLink } from "react-router-dom";
 import Navlinks from "../shared/navbar/Navlinks";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    const mail = form.get("email");
-    const pass = form.get("password");
-    console.log(mail, pass);
+    const email = form.get("email");
+    const password = form.get("password");
+    loginUser(email, password)
+      .then((user) => {
+        console.log(user.user);
+      })
+      .cath((err) => {
+        console.error(err);
+      });
   };
 
   return (
     <>
       <Navlinks />
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
+      <div className="hero min-h-[80vh]">
+        <div className="hero-content flex-col lg:flex-row-reverse lg:w-1/2 md:w-3/4 mx-auto justify-center">
+          <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100 mx-auto">
+            <h2 className="text-center mt-7 lg:text-3xl text-[18px] font-bold">
+              Login your account
+            </h2>
             <form className="card-body" onSubmit={handleSubmit}>
               <div className="form-control">
                 <label className="label">
