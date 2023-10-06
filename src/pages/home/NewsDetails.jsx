@@ -1,8 +1,14 @@
-import React from "react";
-import Loading from "../shared/loading/Loading";
+import Header from "../shared/header/Header";
+import Navlinks from "../shared/navbar/Navlinks";
 
 const NewsDetails = () => {
-  return <div>NewsDetails</div>;
+  return (
+    <div>
+      <Header />
+      <Navlinks />
+      NewsDetails
+    </div>
+  );
 };
 
 export default NewsDetails;

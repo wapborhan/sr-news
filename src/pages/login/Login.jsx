@@ -1,18 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Navlinks from "../shared/navbar/Navlinks";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
+
     loginUser(email, password)
       .then((user) => {
         console.log(user.user);
+        navigate(location?.state ? location.state : "/");
       })
       .cath((err) => {
         console.error(err);
