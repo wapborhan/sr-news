@@ -10,9 +10,8 @@
 
 .card {
   width: 910px;
-  height: 500px;
+  /* height: 500px; */
   padding: 15px;
-
   border-radius: 25px;
   display: flex;
   justify-content: center;

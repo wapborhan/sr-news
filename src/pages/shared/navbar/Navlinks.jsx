@@ -1,14 +1,15 @@
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import proImage from "../../../assets/images/user.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 const Navlinks = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handeLogout = () => {
     logOut();
-    <Navigate to="/" />;
+    navigate("/");
   };
 
   const links = (
